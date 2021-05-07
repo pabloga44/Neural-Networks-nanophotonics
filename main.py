@@ -156,3 +156,20 @@ def load_model(route='',key=''):
     else:
         print('WARNING! No wavelengths found!')
         return model,history,False,x_train,x_validation,x_test,y_train,y_validation,y_test
+    
+#Por Pablo    
+def clean_data(x,y):
+    # Elimina las filas de NaN y te dice cuales son los parámetros que han dado error
+    nans = [];
+    for index in range(len(y)):
+
+      if False in (y[index]==y[index]): #La forma de encontrar un NaN es porque (NaN==NaN)=>False.
+        nans.append(index)
+        print(x[index])
+
+    for i in nans:
+      x = np.delete(x,i,axis=0)
+      y = np.delete(y,i,axis=0)
+
+    return x,y
+    
