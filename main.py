@@ -167,7 +167,7 @@ def clean_data(x,y):
         nans.append(index)
         print('These params caused NaN, so were removed:',x[index])
 
-    for i in nans:
+    for i in reversed(nans):
       x = np.delete(x,i,axis=0)
       y = np.delete(y,i,axis=0)
 
