@@ -14,39 +14,24 @@ def paint_spectra(l,x,y):
     # x: parameter (np.size(x) is the number os spectra in the set)
     # y: transmissions
 
+    size = x.shape[0]
+
     plt.figure(1)
-    plt.plot(l, y[0,:], color='black', label='d = '+str(x[0])+' nm')
-    plt.plot(l, y[int(np.size(x)/5.),:], color='red', label='d = '+str(x[int(np.size(x)/5.)])+' nm')
-    plt.plot(l, y[int(np.size(x)/5.*2),:], color='green', label='d = '+str(x[int(np.size(x)/5.*2)])+' nm')
-    plt.plot(l, y[int(np.size(x)/5.*3),:], color='cyan', label='d = '+str(x[int(np.size(x)/5.*3)])+' nm')
-    plt.plot(l, y[int(np.size(x)/5.*4),:], color='orange', label='d = '+str(x[int(np.size(x)/5.*4)])+' nm')
-    plt.plot(l, y[np.size(x)-1,:], color='blue', label='d = '+str(x[np.size(x)-1])+' nm')
+    plt.plot(l, y[0], color='black', label=str(x[0]))
+    plt.plot(l, y[int(size/5.)], color='red', label=str(x[int(size/5.)]))
+    plt.plot(l, y[int(size/5.*2)], color='green', label=str(x[int(size/5.*2)]))
+    plt.plot(l, y[int(size/5.*3)], color='cyan', label=str(x[int(size/5.*3)]))
+    plt.plot(l, y[int(size/5.*4)], color='orange', label=str(x[int(size/5.*4)]))
+    plt.plot(l, y[size-1], color='blue', label= str(x[size-1]))
 
-    plt.yscale("log")
     plt.legend(loc='upper right', bbox_to_anchor=(1.35, 1.0))
-    plt.xlabel("$\lambda\ [nm]$", fontsize=14)
-    plt.ylabel("Transmission", fontsize=14)
+    plt.xlabel("$Frecuency [nm]$", fontsize=14)
+    plt.ylabel("Cross section (nm)", fontsize=14)
     plt.tick_params(axis='both', which='major', labelsize=12) 
 
     plt.show()
-
-    plt.figure(2)
-    plt.plot(l, y[0,:], color='black', label='d = '+str(x[0])+' nm')
-    plt.plot(l, y[int(np.size(x)/5.),:], color='red', label='d = '+str(x[int(np.size(x)/5.)])+' nm')
-    plt.plot(l, y[int(np.size(x)/5.*2),:], color='green', label='d = '+str(x[int(np.size(x)/5.*2)])+' nm')
-    plt.plot(l, y[int(np.size(x)/5.*3),:], color='cyan', label='d = '+str(x[int(np.size(x)/5.*3)])+' nm')
-    plt.plot(l, y[int(np.size(x)/5.*4),:], color='orange', label='d = '+str(x[int(np.size(x)/5.*4)])+' nm')
-    plt.plot(l, y[np.size(x)-1,:], color='blue', label='d = '+str(x[np.size(x)-1])+' nm')
-
-    # plt.yscale("log")
-    plt.legend(loc='upper right', bbox_to_anchor=(1.35, 1.0))
-    plt.xlabel("$\lambda\ [nm]$", fontsize=14)
-    plt.ylabel("Transmission", fontsize=14)
-    plt.tick_params(axis='both', which='major', labelsize=12) 
-
-    plt.show()
-
-
+    
+   
 def paint_costs(history,save=False,route='',key=''):
     
     if type(history) is not dict:
@@ -87,30 +72,6 @@ def paint_predictions(model,l,x,y,save=False,route='',key=''):
 
     # Plot the fits
     plt.figure(1)
-    plt.plot(l, y[0,:], color='black', label='d = '+str(x[0])+' nm')
-    plt.plot(l, 10**(output1.T), color='black', linestyle='--', label='fit')
-    plt.plot(l, y[int(np.size(x)/5.),:], color='red', label='d = '+str(x[int(np.size(x)/5.)])+' nm')
-    plt.plot(l, 10**(output2.T), color='red', linestyle='--', label='fit')
-    plt.plot(l, y[int(np.size(x)/5.*2),:], color='green', label='d = '+str(x[int(np.size(x)/5.*2)])+' nm')
-    plt.plot(l, 10**(output3.T), color='green', linestyle='--', label='fit')
-    plt.plot(l, y[int(np.size(x)/5.*3),:], color='cyan', label='d = '+str(x[int(np.size(x)/5.*3)])+' nm')
-    plt.plot(l, 10**(output4.T), color='cyan', linestyle='--', label='fit')
-    plt.plot(l, y[int(np.size(x)/5.*4),:], color='orange', label='d = '+str(x[int(np.size(x)/5.*4)])+' nm')
-    plt.plot(l, 10**(output5.T), color='orange', linestyle='--', label='fit')
-    plt.plot(l, y[np.size(x)-1,:], color='blue', label='d = '+str(x[np.size(x)-1])+' nm')
-    plt.plot(l, 10**(output6.T), color='blue', linestyle='--', label='fit')
-
-    plt.yscale("log")
-    plt.legend(loc='upper right', bbox_to_anchor=(1.35, 1.0))
-    plt.xlabel("$\lambda\ [nm]$", fontsize=14)
-    plt.ylabel("Transmission", fontsize=14)
-    plt.tick_params(axis='both', which='major', labelsize=12)
-    if save:
-        plt.savefig(str(route)+'/train'+str(key)+'_log.pdf')
-
-    plt.show()
-
-    plt.figure(2)
     plt.plot(l, y[0,:], color='black', label='d = '+str(x[0])+' nm')
     plt.plot(l, 10**(output1.T), color='black', linestyle='--', label='fit')
     plt.plot(l, y[int(np.size(x)/5.),:], color='red', label='d = '+str(x[int(np.size(x)/5.)])+' nm')
