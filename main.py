@@ -68,7 +68,7 @@ def train_model(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfu
     model.add(layers.Dense(250, activation=actfun, input_shape=(1,)))
     model.add(layers.Dense(250, activation=actfun))
     model.add(layers.Dense(250, activation=actfun))
-    model.add(layers.Dense(200))
+    model.add(layers.Dense(8))
     model.summary()
 
     # Compile the model
