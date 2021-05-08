@@ -160,7 +160,7 @@ def load_model(route='',key=''):
 #Por Pablo    
 def clean_data(x,y):
     # Elimina las filas de NaN y te dice cuales son los parámetros que han dado error
-    
+    print('Clean')
     nans = [];
     for index in range(len(y)):
 
@@ -175,6 +175,7 @@ def clean_data(x,y):
     return x,y
 
 def get_data(file_x,file_y, clean=True):
+    print('Get')
   # Función que recibe los archivos de texto y devuelve los datos en ndarrays
   # Independiente del número de parámetros
   # Puede devolverlos ya limpios
