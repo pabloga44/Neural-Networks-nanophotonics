@@ -185,3 +185,17 @@ def get_data(file_l,file_x,file_y, clean=True):
     x,y = clean_data(x,y)
   
   return l,x,y
+
+def get_data_1param(file_l,file_x,file_y, clean=True):
+  # Función que recibe los archivos de texto y devuelve los datos en ndarrays
+  # Independiente del número de parámetros
+  # Puede devolverlos ya limpios
+  l = np.loadtxt(str(file_l),dtype=float)
+  In = np.loadtxt(str(file_x),dtype=float)
+  x = In[:,2]
+  y = np.loadtxt(str(file_y),dtype=float)
+
+  if clean:
+    x,y = clean_data(x,y)
+  
+  return l,x,y
