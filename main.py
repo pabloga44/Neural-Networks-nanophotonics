@@ -160,16 +160,28 @@ def load_model(route='',key=''):
 #Por Pablo    
 def clean_data(x,y):
     # Elimina las filas de NaN y te dice cuales son los parámetros que han dado error
+    
     nans = [];
     for index in range(len(y)):
 
       if False in (y[index]==y[index]): #La forma de encontrar un NaN es porque (NaN==NaN)=>False.
         nans.append(index)
-        print(x[index])
+        print('These params caused NaN, so were removed:',x[index])
 
     for i in nans:
       x = np.delete(x,i,axis=0)
       y = np.delete(y,i,axis=0)
 
     return x,y
-    
+
+def get_data(file_x,file_y, clean=True):
+  # Función que recibe los archivos de texto y devuelve los datos en ndarrays
+  # Independiente del número de parámetros
+  # Puede devolverlos ya limpios
+  x = np.loadtxt(str(file_x),dtype=float)
+  y = np.loadtxt(str(file_y),dtype=float)
+
+  if clean:
+    x,y = clean_data(x,y)
+  
+  return x,y
