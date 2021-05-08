@@ -58,16 +58,13 @@ def split_data(x,y,validationsize=0.1,testsize=0.1):
 
     return x_train,x_validation,x_test,y_train,y_validation,y_test
 
-def train_model(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfun='sigmoid',lr=0.00003,num_epochs=50000):
-
-    y_train_log=np.log10(y_train)
-    y_validation_log=np.log10(y_validation)
+def train_model(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfun='sigmoid',lr=0.003,num_epochs=50000):
 
     # Build the model
     model = models.Sequential()
-    model.add(layers.Dense(250, activation=actfun, input_shape=(1,)))
-    model.add(layers.Dense(250, activation=actfun))
-    model.add(layers.Dense(250, activation=actfun))
+    model.add(layers.Dense(150, activation=actfun, input_shape=(1,)))
+    model.add(layers.Dense(150, activation=actfun))
+    model.add(layers.Dense(150, activation=actfun))
     model.add(layers.Dense(8))
     model.summary()
 
@@ -86,7 +83,7 @@ def train_model(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfu
     model.compile(optimizer=opt, loss='mse', metrics=['mae'])
 
     # Train the model
-    history = model.fit(x_train, y_train_log, epochs=num_epochs, batch_size=80, validation_data = (x_validation,y_validation_log), verbose=0)
+    history = model.fit(x_train, y_train, epochs=num_epochs, batch_size=80, validation_data = (x_validation,y_validation), verbose=1)
 
     return model,history
 
