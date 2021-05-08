@@ -165,7 +165,7 @@ def clean_data(x,y):
 
       if False in (y[index]==y[index]): #La forma de encontrar un NaN es porque (NaN==NaN)=>False.
         nans.append(index)
-        print('These params caused NaN, so were removed:',x[index])
+        print('These params caused NaN, so they were removed:',x[index])
 
     for i in reversed(nans):
       x = np.delete(x,i,axis=0)
