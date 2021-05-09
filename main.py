@@ -89,13 +89,9 @@ def train_model(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfu
 
 def error_model(model,x_train,x_validation,x_test,y_train,y_validation,y_test):
 
-    y_train_log=np.log10(y_train)
-    y_validation_log=np.log10(y_validation)
-    y_test_log=np.log10(y_test)
-
-    print(model.evaluate(x_train,y_train_log))
-    print(model.evaluate(x_validation,y_validation_log))
-    print(model.evaluate(x_test,y_test_log))
+    print(model.evaluate(x_train,y_train))
+    print(model.evaluate(x_validation,y_validation))
+    print(model.evaluate(x_test,y_test))
 
 def save_model(model,history,l,x_train,x_validation,x_test,y_train,y_validation,y_test,route='',key='',):
     # Save the trained model and its training set
