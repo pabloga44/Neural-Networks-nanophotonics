@@ -58,7 +58,7 @@ def split_data(x,y,validationsize=0.1,testsize=0.1):
 
     return x_train,x_validation,x_test,y_train,y_validation,y_test
 
-def train_model(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfun='sigmoid',lr=0.003,num_epochs=50000):
+def train_model(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfun='sigmoid',lr=0.003,num_epochs=50000,verb=0):
 
     # Build the model
     model = models.Sequential()
@@ -83,7 +83,7 @@ def train_model(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfu
     model.compile(optimizer=opt, loss='mse', metrics=['mae'])
 
     # Train the model
-    history = model.fit(x_train, y_train, epochs=num_epochs, batch_size=80, validation_data = (x_validation,y_validation), verbose=1)
+    history = model.fit(x_train, y_train, epochs=num_epochs, batch_size=80, validation_data = (x_validation,y_validation), verbose=verb)
 
     return model,history
 
