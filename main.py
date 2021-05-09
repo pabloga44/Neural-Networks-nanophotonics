@@ -65,7 +65,7 @@ def train_model(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfu
     # Build the model
     model = models.Sequential()
     model.add(layers.Dense(neurons, activation=actfun, input_shape=(1,)))
-    for h in range(hidden-1):
+    for h in range(hidden-1): #Siempre hay como mínimo una hidden layer
       model.add(layers.Dense(neurons, activation=actfun))
     model.add(layers.Dense(8))
     model.summary()
