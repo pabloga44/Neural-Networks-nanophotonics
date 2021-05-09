@@ -58,13 +58,15 @@ def split_data(x,y,validationsize=0.1,testsize=0.1):
 
     return x_train,x_validation,x_test,y_train,y_validation,y_test
 
-def train_model(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfun='sigmoid',lr=0.0006,num_epochs=50000,verb=0):
-
+def train_model(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfun='sigmoid',lr=0.0006,num_epochs=50000,verb=0,hidden=3,neurons=150,batch=80):
+    # Nos permite seleccionar: 
+    #   función activación, optimizador, learning rate, num epochs, hidden layes, num neurons/hid layer, batch size y si queremos verbose.
+    
     # Build the model
     model = models.Sequential()
-    model.add(layers.Dense(150, activation=actfun, input_shape=(1,)))
-    model.add(layers.Dense(150, activation=actfun))
-    model.add(layers.Dense(150, activation=actfun))
+    model.add(layers.Dense(neurons, activation=actfun, input_shape=(1,)))
+    for h in range(hidden-1):
+      model.add(layers.Dense(neurons, activation=actfun))
     model.add(layers.Dense(8))
     model.summary()
 
@@ -83,7 +85,7 @@ def train_model(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfu
     model.compile(optimizer=opt, loss='mse', metrics=['mae'])
 
     # Train the model
-    history = model.fit(x_train, y_train, epochs=num_epochs, batch_size=80, validation_data = (x_validation,y_validation), verbose=verb)
+    history = model.fit(x_train, y_train, epochs=num_epochs, batch_size=batch, validation_data = (x_validation,y_validation), verbose=verb)
 
     return model,history
 
