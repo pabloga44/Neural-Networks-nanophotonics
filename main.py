@@ -58,7 +58,7 @@ def split_data(x,y,validationsize=0.1,testsize=0.1):
 
     return x_train,x_validation,x_test,y_train,y_validation,y_test
 
-def train_model(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfun='sigmoid',lr=0.0005,num_epochs=50000,verb=0):
+def train_model(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfun='sigmoid',lr=0.0006,num_epochs=50000,verb=0):
 
     # Build the model
     model = models.Sequential()
