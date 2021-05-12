@@ -248,3 +248,34 @@ def split_data_3params(x,y,validationsize=0.1,testsize=0.1):
     y_test=np.array(y_test)[idx3]
     
     return x_train,x_validation,x_test,y_train,y_validation,y_test
+
+def train_model_2params(x_train,x_validation,y_train,y_validation,optimizer='Adam',actfun='sigmoid',lr=0.0006,num_epochs=50000,verb=0,hidden=3,neurons=150,batch=80):
+    # Nos permite seleccionar: 
+    #   función activación, optimizador, learning rate, num epochs, hidden layes, num neurons/hid layer, batch size y si queremos verbose.
+    
+    # Build the model
+    model = models.Sequential()
+    model.add(layers.Dense(neurons, activation=actfun, input_shape=(2,)))
+    for h in range(hidden-1): #Siempre hay como mínimo una hidden layer
+      model.add(layers.Dense(neurons, activation=actfun))
+    model.add(layers.Dense(8))
+    model.summary()
+
+    # Compile the model
+    if optimizer=='Adam':
+        opt = keras.optimizers.Adam(learning_rate=lr, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
+    elif optimizer=='SGD':
+        opt = keras.optimizers.SGD(learning_rate=lr)
+    elif optimizer=='Adagrad':
+        opt = keras.optimizers.Adagrad(learning_rate=lr)
+    elif optimizer=='RMSprop':
+        opt = keras.optimizers.RMSprop(learning_rate=lr)
+    elif optimizer=='Nadam':
+        opt = keras.optimizers.Nadam(learning_rate=lr, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
+
+    model.compile(optimizer=opt, loss='mse', metrics=['mae'])
+
+    # Train the model
+    history = model.fit(x_train, y_train, epochs=num_epochs, batch_size=batch, validation_data = (x_validation,y_validation), verbose=verb)
+
+    return model,history
