@@ -279,3 +279,27 @@ def train_model_2params(x_train,x_validation,y_train,y_validation,optimizer='Ada
     history = model.fit(x_train, y_train, epochs=num_epochs, batch_size=batch, validation_data = (x_validation,y_validation), verbose=verb)
 
     return model,history
+
+def split_data_Pablo(x,y):
+
+
+  #Shuffleamos ambas listas
+  combined = list(zip(x,y))
+  np.random.shuffle(combined)
+  x[:],y[:] = zip(*combined)
+  #print(Params)
+
+  #SEPARACION EN TRAIN Y TEST
+  N = len(x)
+  p = int(0.8*N)
+  q = int(0.9*N)
+
+  x_train = x[0:p]
+  x_val = x[p:q]
+  x_test = x[q:N]
+
+  y_train = y[0:p]
+  y_val = y[p:q]
+  y_test = y[q:N]
+
+  return x_train,x_val,x_test,y_train,y_val,y_test
