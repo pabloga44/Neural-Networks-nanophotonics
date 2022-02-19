@@ -1,5 +1,3 @@
-# TFG
-
 # Repository for the Bachelor Thesis of Pablo Gallego
 ## Physics degree in Universidad Autónoma de Madrid, 2020/21
 
