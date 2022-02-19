@@ -1,4 +1,4 @@
-# Repository for the Bachelor Thesis of Pablo Gallego
+# Bachelor Thesis repository of Pablo Gallego
 ## Physics degree in Universidad Autónoma de Madrid, 2020/21
 
 In this repository there are some tools for developing neural network models using Tensorflow applied to nanophotonics problems.  
